@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
+
+    <data>
+
+        <variable
+            name="homeViewModel"
+            type="com.example.rcademo.viewmodel.HomeViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.HomeFragment">
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:background="#FF6333"
+            android:enabled="@{homeViewModel.startbtnVisible}"
+            android:onClick="@{()->homeViewModel.onStartTracking()}"
+            android:text="START"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnStop"
+            app:layout_constraintEnd_toStartOf="@+id/btnStop"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#FF6333"
+            android:enabled="@{homeViewModel.stopbtnVisible}"
+            android:onClick="@{()->homeViewModel.onStopTracking()}"
+            android:text="STOP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnStart"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#ff6333 "
+            android:enabled="@{homeViewModel.clearbtnVisible}"
+            android:onClick="@{()->homeViewModel.onClear()}"
+            android:text="CLEAR"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btnClear"
+            app:layout_constraintTop_toBottomOf="@+id/btnStart">
+
+            <TextView
+                android:id="@+id/tvHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@{homeViewModel.nightString}" />
+        </ScrollView>
+    </android.support.constraint.ConstraintLayout>
+</layout>
