@@ -7,11 +7,15 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.rcademo.R
+import com.example.rcademo.SleepNightAdapter
 import com.example.rcademo.database.SleepDatabase
 import com.example.rcademo.databinding.LayoutFragmentHomeBinding
 import com.example.rcademo.viewmodel.HomeViewModel
@@ -43,6 +47,20 @@ class HomeFragment : Fragment() {
             if (it == true) {
                 Snackbar.make(activity!!.findViewById(android.R.id.content),"All History were cleard", Snackbar.LENGTH_SHORT).show()
                 viewModel.doneShowingSnackbar()
+            }
+        })
+
+        //val layoutManager = LinearLayoutManager(activity)
+
+        val layoutManager = GridLayoutManager(activity,3)
+        binding.rvSleep.layoutManager = layoutManager
+        val adapter = SleepNightAdapter(SleepNightAdapter.SleepNightListener {
+            this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(it))
+        })
+        binding.rvSleep.adapter = adapter
+        viewModel.night.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
             }
         })
 

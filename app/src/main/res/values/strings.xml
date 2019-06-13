@@ -4,6 +4,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="format_id">User id: %d</string>
+    <string name="format_date">%1$td/%1$tm/%1$tY</string>
+
     <string name="title"><![CDATA[<h3>HERE IS YOUR SLEEP DATA</h3>]]></string>
     <string name="start_time"><![CDATA[<b>Start:</b>]]></string>
     <string name="end_time"><![CDATA[<b>End:</b>]]></string>
@@ -18,4 +21,8 @@
     <string name="four_pretty_good">Pretty good</string>
     <string name="five_excellent">Excellent!</string>
 
+
+    <string name="minutes_length">%d minutes on %s</string>
+    <string name="hours_length">%d hours on %s</string>
+    <string name="seconds_length">%d seconds on %s</string>
 </resources>

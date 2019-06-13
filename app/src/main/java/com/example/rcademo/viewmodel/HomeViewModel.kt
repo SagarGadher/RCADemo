@@ -14,7 +14,7 @@ class HomeViewModel(val database: SleepDatabaseDao, application: Application) : 
     private var viewModelJob = Job()
     private var uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var tonight = MutableLiveData<SleepNight?>()
-    private var night = database.getAllNight()
+    var night = database.getAllNight()
 
     val nightString = Transformations.map(night){
         formatNights(it,application.resources)
